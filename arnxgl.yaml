@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arnxgl
+  namespace: librareome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arnxgl
+  template:
+    metadata:
+      labels:
+        app: arnxgl
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nautilus.io/vis
+                operator: DoesNotExist
+              - key: topology.kubernetes.io/region
+                operator: In
+                values:
+                - us-west
+      hostname: arnxgl
+      containers:
+      - name: arnxgl
+        image: gitlab-registry.nrp-nautilus.io/monkeytang/arnoc_glx:latest
+        env:
+        - name: TZ
+          value: "UTC"
+        - name: SIZEW
+          value: "1920"
+        - name: SIZEH
+          value: "1200"
+        - name: CDEPTH
+          value: "24"
+        - name: SHARED
+          value: "TRUE"
+        - name: PASSWD
+          value: "mypasswd"
+#          valueFrom:
+#            secretKeyRef:
+#              name: gxgl-pass
+#              key: gxgl-pass
+        - name: VIDEO_PORT
+          value: "DFP"
+        stdin: true
+        tty: true
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            memory: 64Gi
+            cpu: "16"
+            nvidia.com/gpu: 1
+          requests:
+            memory: 100Mi
+            cpu: 100m
+        volumeMounts:
+        - mountPath: /dev/shm
+          name: dshm
+        - mountPath: /cache
+          name: arnxgl-cache-vol
+        - mountPath: /home/user
+          name: arnxgl-root-vol
+        - mountPath: /seaweed
+          name: arnxgl-sw-vol
+        - mountPath: /arnoc
+          name: arnoc-seaweed
+
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      - name: arnxgl-cache-vol
+        persistentVolumeClaim:
+          claimName: arnxgl-cache-vol
+      - name: arnxgl-root-vol
+        persistentVolumeClaim:
+          claimName: arnxgl-root-vol
+      - name: arnxgl-sw-vol
+        persistentVolumeClaim:
+          claimName: arnxgl-sw-vol
+      - name : arnoc-seaweed
+        persistentVolumeClaim:
+          claimName: arnoc-seaweed
+

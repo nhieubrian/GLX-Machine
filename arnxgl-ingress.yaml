@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arnxgl
+  namespace: librareome
+  labels:
+    app: arnxgl
+spec:
+  selector:
+    app: arnxgl
+  ports:
+  - name: arnxgl
+    protocol: TCP
+    port: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: haproxy
+  name: arnxgl-ingress
+  namespace: librareome
+spec:
+  rules:
+  - host: arnxgl.nrp-nautilus.io
+    http:
+      paths:
+      - backend:
+          serviceName: arnxgl
+          servicePort: 8080
+        path: /
+  tls:
+  - hosts:
+      - arnxgl.nrp-nautilus.io
