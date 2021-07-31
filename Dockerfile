@@ -81,7 +81,8 @@ RUN dpkg --add-architecture i386 && \
         xkb-data \
         libxrandr-dev \
         xorg-dev \
-        snapd \ 
+        snapd \
+        snap\ 
         ubuntu-mate-desktop && \
     if [ "$(grep VERSION_CODENAME= /etc/os-release | cut -d= -f2)" = "bionic" ]; then apt-get install -y --no-install-recommends vulkan-utils; else apt-get install -y --no-install-recommends vulkan-tools; fi && \
     # Remove Bluetooth packages that throw errors
@@ -170,16 +171,18 @@ RUN apt update && \
     apt install code -y && \
     apt update -y && \
     apt upgrade -y 
-
-RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
-    dpkg -i packages-microsoft-prod.deb \ 
-    rm packages-microsoft-prod.deb \ 
+# trying to install Microsoft pacakages for .net runtime
+#RUN wget -q packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+ #   dpkg -i packages-microsoft-prod.deb \ 
+  #  rm packages-microsoft-prod.deb \ 
 
 RUN apt-get update && \
-    apt-get install apt-transport-https -y && \
-    apt-get update && \
-    apt-get install dotnet-sdk-5.0 -y \
-    
+     apt-get install apt-transport-https -y && \
+     apt-get update && \
+     apt-get install dotnet-sdk-5.0 -y \
+
+
+
 
 COPY bootstrap.sh /etc/bootstrap.sh
 RUN chmod 755 /etc/bootstrap.sh
