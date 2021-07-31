@@ -175,10 +175,10 @@ RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-p
     dpkg -i packages-microsoft-prod.deb \ 
     rm packages-microsoft-prod.deb \ 
 
-RUN apt update && \
-    apt install apt-transport-https && \
-    apt update && \
-    apt install dotnet-sdk-5.0 \
+RUN apt-get update && \
+    apt-get install apt-transport-https -y && \
+    apt-get update && \
+    apt-get install dotnet-sdk-5.0 -y \
     
 
 COPY bootstrap.sh /etc/bootstrap.sh
