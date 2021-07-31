@@ -172,9 +172,9 @@ RUN apt update && \
     apt update -y && \
     apt upgrade -y 
 # trying to install Microsoft pacakages for .net runtime
-#RUN wget -q packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
- #   dpkg -i packages-microsoft-prod.deb \ 
-  #  rm packages-microsoft-prod.deb \ 
+RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb \
+    dpkg -i packages-microsoft-prod.deb \ 
+    rm packages-microsoft-prod.deb  
 
 RUN apt-get update && \
      apt install apt-transport-https -y && \
