@@ -179,7 +179,7 @@ RUN apt update && \
 RUN apt-get update && \
      apt-get install apt-transport-https -y && \
      apt-get update && \
-     apt-get install dotnet-sdk-5.0 -y \
+     apt-get install dotnet-sdk-5.0 -y 
 
 
 
