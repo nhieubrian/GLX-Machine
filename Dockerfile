@@ -172,8 +172,8 @@ RUN apt update && \
     apt upgrade -y 
 
 RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
-    dpkg -i packages-microsoft-prod.deb -y \ 
-    rm packages-microsoft-prod.deb -y \ 
+    dpkg -i packages-microsoft-prod.deb \ 
+    rm packages-microsoft-prod.deb \ 
 
 RUN apt update -y && \
     apt install -y apt-transport-https && \
