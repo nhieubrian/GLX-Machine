@@ -177,9 +177,9 @@ RUN apt update && \
   #  rm packages-microsoft-prod.deb \ 
 
 RUN apt-get update && \
-     apt-get install apt-transport-https -y && \
-     apt-get update && \
-     apt-get install dotnet-sdk-5.0 -y 
+     apt install apt-transport-https -y && \
+     apt update && \
+     apt install dotnet-sdk-5.0 -y 
 
 
 
