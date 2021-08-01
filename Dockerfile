@@ -177,9 +177,9 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsof
 
 
 RUN apt-get update && \
-     apt install apt-transport-https -y && \
+     apt install -y apt-transport-https -y && \
      apt update && \
-     apt install dotnet-sdk-3.1 -y 
+     apt install -y dotnet-sdk-5.0  
 
 
 
