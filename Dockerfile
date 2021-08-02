@@ -173,17 +173,13 @@ RUN apt update && \
     apt upgrade -y 
 # trying to install Microsoft pacakages for .net runtime
 RUN apt install -y software-properties-common apt-transport-https wget && \
-    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb 
+    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+
+RUN dpkg -i packages-microsoft-prod.deb 
 
 
 RUN apt-get update && \
-     apt install apt-transport-https -y \
-     apt update \
-     apt install -y dotnet-sdk-5.0  
-
-
-
+     apt install apt-transport-https dotnet-sdk-5.0 -y
 
 COPY bootstrap.sh /etc/bootstrap.sh
 RUN chmod 755 /etc/bootstrap.sh
