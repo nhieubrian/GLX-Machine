@@ -172,13 +172,14 @@ RUN apt update && \
     apt update -y && \
     apt upgrade -y 
 # trying to install Microsoft pacakages for .net runtime
-RUN curl https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
-    dpkg -i packages-microsoft-prod.deb \
+RUN apt install -y software-properties-common apt-transport-https wget && \
+    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb \
+    dpkg -i packages-microsoft-prod.deb 
 
 
 RUN apt-get update && \
-     apt install -y apt-transport-https -y && \
-     apt update && \
+     apt install apt-transport-https -y \
+     apt update \
      apt install -y dotnet-sdk-5.0  
 
 
