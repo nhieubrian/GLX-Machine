@@ -173,7 +173,7 @@ RUN apt update && \
     apt upgrade -y 
 # trying to install Microsoft pacakages for .net runtime
 RUN apt install -y software-properties-common apt-transport-https wget && \
-    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb \
+    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb 
 
 
