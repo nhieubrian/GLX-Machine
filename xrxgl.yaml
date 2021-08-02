@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: arnxgl
+  name: xrxgl
   namespace: librareome
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: arnxgl
+      app: xrxgl
   template:
     metadata:
       labels:
-        app: arnxgl
+        app: xrxgl
     spec:
       affinity:
         nodeAffinity:
@@ -24,10 +24,10 @@ spec:
                 operator: In
                 values:
                 - us-west
-      hostname: arnxgl
+      hostname: xrxgl
       containers:
-      - name: arnxgl
-        image: gitlab-registry.nrp-nautilus.io/monkeytang/arnoc_glx:latest
+      - name: xrxgl
+        image: gitlab-registry.nrp-nautilus.io/monkeytang/xroc_glx:latest
         env:
         - name: TZ
           value: "UTC"
@@ -64,28 +64,25 @@ spec:
         - mountPath: /dev/shm
           name: dshm
         - mountPath: /cache
-          name: arnxgl-cache-vol
+          name: xrxgl-cache-vol
         - mountPath: /home/user
-          name: arnxgl-root-vol
+          name: xrxgl-root-vol
         - mountPath: /seaweed
-          name: arnxgl-sw-vol
-        - mountPath: /arnoc
-          name: arnoc-seaweed
+          name: xrxgl-sw-vol
+        
 
       volumes:
       - name: dshm
         emptyDir:
           medium: Memory
-      - name: arnxgl-cache-vol
+      - name: xrxgl-cache-vol
         persistentVolumeClaim:
-          claimName: arnxgl-cache-vol
-      - name: arnxgl-root-vol
+          claimName: xrxgl-cache-vol
+      - name: xrxgl-root-vol
         persistentVolumeClaim:
-          claimName: arnxgl-root-vol
-      - name: arnxgl-sw-vol
+          claimName: xrxgl-root-vol
+      - name: xrxgl-sw-vol
         persistentVolumeClaim:
-          claimName: arnxgl-sw-vol
-      - name : arnoc-seaweed
-        persistentVolumeClaim:
-          claimName: arnoc-seaweed
+          claimName: xrxgl-sw-vol
+     
 
