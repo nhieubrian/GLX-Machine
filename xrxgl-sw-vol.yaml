@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: arnxgl-sw-vol
+  name: xrxgl-sw-vol
   namespace: librareome
 spec:
   storageClassName: seaweedfs-storage
