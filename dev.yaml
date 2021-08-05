@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xrxgl
+  name: dev
   namespace: librareome
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: xrxgl
+      app: dev
   template:
     metadata:
       labels:
-        app: xrxgl
+        app: dev
     spec:
       affinity:
         nodeAffinity:
@@ -24,9 +24,9 @@ spec:
                 operator: In
                 values:
                 - us-west
-      hostname: xrxgl
+      hostname: dev
       containers:
-      - name: xrxgl
+      - name: dev
         image: gitlab-registry.nrp-nautilus.io/ar-noc/arnoc_glx:latest
         env:
         - name: TZ
@@ -64,25 +64,22 @@ spec:
         - mountPath: /dev/shm
           name: dshm
         - mountPath: /cache
-          name: xrxgl-cache-vol
+          name: dev-cache-vol
         - mountPath: /home/user
-          name: xrxgl-root-vol
-        - mountPath: /seaweed
-          name: xrxgl-sw-vol
+          name: dev-root-vol
         
 
       volumes:
       - name: dshm
         emptyDir:
           medium: Memory
-      - name: xrxgl-cache-vol
+      - name: dev-cache-vol
         persistentVolumeClaim:
-          claimName: xrxgl-cache-vol
-      - name: xrxgl-root-vol
+          claimName: dev-cache-vol
+      - name: dev-root-vol
         persistentVolumeClaim:
-          claimName: xrxgl-root-vol
-      - name: xrxgl-sw-vol
-        persistentVolumeClaim:
-          claimName: xrxgl-sw-vol
+          claimName: dev-root-vol
+      - name: dev-sw-vol
+
      
 
