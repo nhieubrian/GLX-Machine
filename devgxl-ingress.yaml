@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: devgxl
+  name: dev
   namespace: librareome
   labels:
-    app: devgxl
+    app: dev
 spec:
   selector:
-    app: devgxl
+    app: dev
   ports:
-  - name: devgxl
+  - name: dev
     protocol: TCP
     port: 8080
 ---
@@ -19,17 +19,17 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: haproxy
-  name: devgxl-ingress
+  name: dev-ingress
   namespace: librareome
 spec:
   rules:
-  - host: devgxl.nrp-nautilus.io
+  - host: dev.nrp-nautilus.io
     http:
       paths:
       - backend:
-          serviceName: devgxl
+          serviceName: dev
           servicePort: 8080
         path: /
   tls:
   - hosts:
-      - devgxl.nrp-nautilus.io
+      - dev.nrp-nautilus.io
