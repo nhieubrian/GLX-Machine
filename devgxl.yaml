@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dev
+  name: devgxl
   namespace: librareome
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dev
+      app: devgxl
   template:
     metadata:
       labels:
-        app: dev
+        app: devgxl
     spec:
       affinity:
         nodeAffinity:
@@ -24,9 +24,9 @@ spec:
                 operator: In
                 values:
                 - us-west
-      hostname: dev
+      hostname: devgxl
       containers:
-      - name: dev
+      - name: devgxl
         image: gitlab-registry.nrp-nautilus.io/ar-noc/arnoc_glx:latest
         env:
         - name: TZ
@@ -64,21 +64,21 @@ spec:
         - mountPath: /dev/shm
           name: dshm
         - mountPath: /cache
-          name: dev-cache-vol
+          name: devgxl-cache-vol
         - mountPath: /home/user
-          name: dev-root-vol
+          name: devgxl-root-vol
         
 
       volumes:
       - name: dshm
         emptyDir:
           medium: Memory
-      - name: dev-cache-vol
+      - name: devgxl-cache-vol
         persistentVolumeClaim:
-          claimName: dev-cache-vol
-      - name: dev-root-vol
+          claimName: devgxl-cache-vol
+      - name: devgxl-root-vol
         persistentVolumeClaim:
-          claimName: dev-root-vol
+          claimName: devgxl-root-vol
 
      
 
