@@ -79,7 +79,6 @@ spec:
       - name: dev-root-vol
         persistentVolumeClaim:
           claimName: dev-root-vol
-      - name: dev-sw-vol
 
      
 
