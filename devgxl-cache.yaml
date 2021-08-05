@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: devxgl-cache-vol
+  name: devgxl-cache-vol
   namespace: librareome
 spec:
   storageClassName: rook-ceph-block
