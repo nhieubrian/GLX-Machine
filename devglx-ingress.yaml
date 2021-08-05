@@ -27,7 +27,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: dev
+          serviceName: devglx
           servicePort: 8080
         path: /
   tls:
