@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: dmlglx-root-vol
-  namespace: librareome
+  namespace: ucsd-digital-media-lab
 spec:
   storageClassName: rook-ceph-block
   accessModes:
