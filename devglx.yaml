@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dmlglx
-  namespace: librareome
+  namespace: ucsd-digital-media-lab
 spec:
   replicas: 1
   selector:
