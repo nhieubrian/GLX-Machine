@@ -83,6 +83,15 @@ RUN dpkg --add-architecture i386 && \
         xorg-dev \
         snapd \
         snap\ 
+        cloudcompare \
+        wine \
+        lamp-server^ \
+        libtbb-dev \
+        software-properties-common \
+        build-essential cmake \
+        libboost-all-dev \
+        cmake-curses-gui \
+        gcc-10 g++-10 \
         ubuntu-mate-desktop && \
     if [ "$(grep VERSION_CODENAME= /etc/os-release | cut -d= -f2)" = "bionic" ]; then apt-get install -y --no-install-recommends vulkan-utils; else apt-get install -y --no-install-recommends vulkan-tools; fi && \
     # Remove Bluetooth packages that throw errors
