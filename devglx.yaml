@@ -27,7 +27,7 @@ spec:
       hostname: dmlglx
       containers:
       - name: dmlglx
-        image: gitlab-registry.nrp-nautilus.io/ar-noc/arnoc_glx:latest
+        image: gitlab-registry.nrp-nautilus.io/nhieubrian/glx-digital-media-lab:latest
         env:
         - name: TZ
           value: "UTC"
